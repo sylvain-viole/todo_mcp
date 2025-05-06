@@ -21,3 +21,24 @@ export const todoItemAdd: MpcTools = {
         }
     }
 }
+
+export const todoItemCheck: MpcTools = {
+    list: {
+
+        name: "todo_check",
+        description: "Check a todo item to the todo list",
+        inputSchema: {
+            type: "object",
+            properties: {
+                itemName: { type: "string" }
+            }
+        },
+        required: ["itemName"],
+    },
+    call: async (itemName) => {
+        await mcpExecutionContext.actor?.onTodo.checksItem(itemName)
+        return {
+            content: [{ type: "text", text: `Checked ${itemName} todo` }]
+        }
+    }
+}

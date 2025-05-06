@@ -5,8 +5,8 @@ import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { browserSetTool } from "./mcp/tools/browserSetTool.js";
 import { pageVisit } from "./mcp/tools/pageVisitTool.js";
-import { assertLocatorVisible } from "./mcp/tools/assertLocatorVisible.js";
-import { todoItemAdd } from "./mcp/tools/todoItemAdd.js";
+import { assertLocatorCheckedStatus, assertLocatorVisible } from "./mcp/tools/todoItemAssert.js";
+import { todoItemAdd, todoItemCheck } from "./mcp/tools/todoItemAdd.js";
 
 
 const server = new Server({
@@ -22,10 +22,12 @@ const server = new Server({
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
-      browserSetTool.list, 
+      browserSetTool.list,
       pageVisit.list,
       todoItemAdd.list,
-      assertLocatorVisible.list,]
+      todoItemCheck.list,
+      assertLocatorVisible.list,
+      assertLocatorCheckedStatus.list]
   };
 });
 
@@ -37,9 +39,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     case "page_visit":
       return pageVisit.call(request.params.arguments!!.pageName);
     case "todo_add":
-        return todoItemAdd.call(request.params.arguments!!.itemName);
-    case "assert_locator_visible":
+      return todoItemAdd.call(request.params.arguments!!.itemName);
+    case "todo_check":
+      return todoItemCheck.call(request.params.arguments!!.itemName);
+    case "assert_item_visible":
       return assertLocatorVisible.call(request.params.arguments!!.itemName);
+    case "assert_item_checked_status":
+      return assertLocatorCheckedStatus.call(request.params.arguments)
   }
   throw new Error("Tool not found");
 });
