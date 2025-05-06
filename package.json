@@ -1,0 +1,25 @@
+{
+  "type": "module",
+  "bin": {
+    "pw": "./build/index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.3",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.11.0",
+    "express": "^5.1.0",
+    "zod": "^3.24.3"
+  }
+}
