@@ -1,7 +1,7 @@
 import { mcpExecutionContext } from "../executionContext.js";
 import { MpcTools } from "../ToolsInterface.js";
 
-export const todoItemAdd: MpcTools = {
+export const todoItemAddTool: MpcTools = {
     list: {
 
         name: "todo_add",
@@ -22,7 +22,7 @@ export const todoItemAdd: MpcTools = {
     }
 }
 
-export const todoItemCheck: MpcTools = {
+export const todoItemCheckTool: MpcTools = {
     list: {
 
         name: "todo_check",

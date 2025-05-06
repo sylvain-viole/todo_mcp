@@ -1,5 +1,3 @@
-import { ServerResult } from "@modelcontextprotocol/sdk/types.js"
-
 export interface MpcTools {
     list: {
         name: string,

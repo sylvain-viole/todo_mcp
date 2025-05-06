@@ -3,7 +3,7 @@ import { mcpExecutionContext } from "../executionContext.js";
 import { MpcTools } from "../ToolsInterface.js";
 import { TodoPage } from "../../elements/todo.page.js";
 
-export const assertLocatorVisible: MpcTools = {
+const assertTodoItemVisible: MpcTools = {
     list: {
 
         name: "assert_item_visible",
@@ -18,8 +18,8 @@ export const assertLocatorVisible: MpcTools = {
     },
     call: async (itemName: string) => {
         try {
-            await expect((mcpExecutionContext.actor?.currentPage as TodoPage).locators.todoItem(itemName),"NOT VISIBLE").toBeVisible()
-        } catch(error) {
+            await expect((mcpExecutionContext.actor?.currentPage as TodoPage).locators.todoItem(itemName), "NOT VISIBLE").toBeVisible()
+        } catch (error) {
             console.log((error as Error).message)
             return {
                 content: [{ type: "text", text: (error as Error).message }]
@@ -31,7 +31,7 @@ export const assertLocatorVisible: MpcTools = {
     }
 }
 
-export const assertLocatorCheckedStatus: MpcTools = {
+const assertTodoItemCheckedStatus: MpcTools = {
     list: {
 
         name: "assert_item_checked_status",
@@ -43,11 +43,11 @@ export const assertLocatorCheckedStatus: MpcTools = {
                 status: { type: "boolean" }
             }
         },
-        required: ["itemName","status"],
+        required: ["itemName", "status"],
     },
-    call: async (params: {itemName: string, status: boolean}) => {
+    call: async (params: { itemName: string, status: boolean }) => {
         try {
-            switch(params.status) {
+            switch (params.status) {
                 case true:
                     await expect((mcpExecutionContext.actor?.currentPage as TodoPage).locators.todoItem(params.itemName)).toHaveClass("completed");
                     break;
@@ -55,7 +55,7 @@ export const assertLocatorCheckedStatus: MpcTools = {
                     await expect((mcpExecutionContext.actor?.currentPage as TodoPage).locators.todoItem(params.itemName)).not.toHaveClass("completed");
                     break;
             }
-        } catch(error) {
+        } catch (error) {
             return {
                 content: [{ type: "text", text: (error as Error).message }]
             }
@@ -65,3 +65,5 @@ export const assertLocatorCheckedStatus: MpcTools = {
         }
     }
 }
+
+export { assertTodoItemVisible, assertTodoItemCheckedStatus }

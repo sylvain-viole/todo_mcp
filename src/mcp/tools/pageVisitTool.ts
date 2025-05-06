@@ -2,7 +2,7 @@ import { mcpExecutionContext } from "../executionContext.js";
 import { MpcTools } from "../ToolsInterface.js";
 import { TodoPage } from "../../elements/todo.page.js";
 
-export const pageVisit: MpcTools = {
+export const pageVisitTool: MpcTools = {
     list: {
 
         name: "page_visit",
