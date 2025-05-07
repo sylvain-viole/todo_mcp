@@ -21,9 +21,17 @@ This project is a Playwright end-to-end testing setup for a todo application and
 
 ## How to run as MCP part
 
-1.  Run `npm run start`
-2.  On your MCP client, run `node <PATH TO PROJECT>/build/index.js`
+To run the mcp feature you need to have [goose](https://github.com/block/goose) installed and a llm provider configured.
 
+1.  Run `npm run start`
+2.  Browse to the `goose` folder an run 
+```bash 
+bash ./test.sh ./todo.txt
+```
+
+This will launch goose to execute tests
+
+---
 The MCP server exposes the following tools:
 
 | Tool            | Description                                                                      |
