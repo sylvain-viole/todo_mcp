@@ -1,0 +1,13 @@
+
+## SCENARIO NAME : 
+Todo test
+
+## SCENARIO INSTRUCTIONS :
+
+Open firefox 
+Visit page "todo"
+Add "hello", "world" items
+Assert on "hello" and "world" items visibility
+Check "hello" item 
+Assert "world" item check status is true. 
+Assert "hello" items check status is false.
